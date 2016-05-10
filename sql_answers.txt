@@ -80,7 +80,10 @@ The following questions can be answered by using nested SQL statements but ideal
 
 1. Select the time for the Edinburgh Royal Tattoo.
 
-  SELECT time FROM times INNER JOIN shows ON shows.id = times.show_id WHERE shows.id IN(SELECT id FROM shows WHERE name = 'Edinburgh Royal Tattoo');
+  SELECT time
+  FROM times INNER JOIN shows
+  ON shows.id = times.show_id
+  WHERE shows.id IN(SELECT id FROM shows WHERE name = 'Edinburgh Royal Tattoo');
 
 2. Select the number of users who want to see "Le Haggis".
 
@@ -92,8 +95,4 @@ The following questions can be answered by using nested SQL statements but ideal
 
 4. SELECT all users who are going to a show at 13:30.
 
-  SELECT name FROM users INNER JOIN shows_users ON shows_users.user_id = users.id INNER JOIN times ON times.show_id = shows_users.show_id;
-
-******This works to SELECT a table which includes the user names for each show a user will see (including if they are going to see more than one show). The WHERE statement below doesn't work as expected.
-
-  WHERE time = '13.30';
+  SELECT name FROM users INNER JOIN shows_users ON shows_users.user_id = users.id INNER JOIN times ON times.show_id = shows_users.show_id WHERE time = '13:30';
